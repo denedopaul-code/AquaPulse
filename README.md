@@ -139,6 +139,30 @@ Readings between 250 and 300 leave the previous wet/dry decision alone, so a noi
 | `DRY-RUN ALERT` | It wanted to run, or was running, and the inlet is dry |
 | `SENSOR FAULT!` | No believable echo for about 2.5 seconds |
 
+## Practical Applications
+
+### 1. Agriculture (autonomous irrigation)
+
+AquaPulse can keep farm reservoirs and header tanks filled without anyone watching them. The pump starts and stops on water level, and the dry-run protection stops the pump if the water source runs out, which protects the motor during unattended operation.
+
+### 2. Rural areas with solar powered water pumps
+
+Solar systems only run when there is power, so pumping needs to be automatic and safe. AquaPulse fills the tank whenever the pump can run and shuts it off at the upper level, so solar energy is not wasted overfilling. The fail-safe design turns the pump off if the controller hangs or loses power.
+
+### 3. Households
+
+Overhead tanks overflow or run dry when people forget to switch the pump. AquaPulse fills the tank at the low threshold, stops at the high threshold, and alerts the household with a buzzer and LCD message if the source is dry.
+
+### 4. School hostels
+
+Hostels use a lot of water and have no one assigned to watch the tank. AquaPulse keeps the tank filled automatically, reduces overflow and pump damage, and gives staff a clear LCD status (`Level`, `Pump`, `DRY-RUN ALERT`, `SENSOR FAULT!`).
+
+## Wireless Upgrade (In Progress)
+
+The wired command wire between the tank node and the pump node is being replaced with a wireless link using the **ESP32** and [ESP-NOW](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/network/esp_now.html). The tank node and pump node will each use an ESP32, which removes the cable run between the tank and the pump.
+
+The safety behaviour stays the same: the pump node turns the motor off unless it keeps receiving a live signal from the tank node.
+
 ## Project layout
 
 ```text
